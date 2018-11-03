@@ -1,0 +1,25 @@
+> variacao_PIB <- read.table("c:/ECONOMETRIA/variacao.xls", header = T)
+> var_PIB <- ts(variacao_PIB$variacao_PIB, start =1951, frequency = 1 )
+> AR2 <- arima(var_PIB,c(2,0,0))
+> residuosAR2 <- AR2$residuals
+> hist(residuosAR2)
+> hist(residuosAR2, main = "Histograma dos Residuos")
+> hist(residuosAR2, main = "Histograma dos Residuos", col="Gray")
+> hist(residuosAR2, main = "Histograma dos Residuos", col="Gray", breaks=20)
+> hist(residuosAR2, main = "Histograma dos Residuos", col="Gray",breaks = 20,xlab="Residuos",ylab = "Desnsidade",ylim = c(0,15),xlim =c(-0.15,0.15))
+> lines(density(residuosAR2, bw=0.03),col="Blue")
+> lines(density(residuosAR2, bw=0.03, kernel = "gaussian"),col="Blue")
+> lines(density(residuosAR2, bw=0.03, kernel = "triangular"),col="Red")
+> lines(density(residuosAR2, bw=0.03, kernel = "epanechnikov"),col="Yellow")
+> lines(density(residuosAR2, bw=0.03, kernel = "biweight"),col="Green")
+> jb.norm.test(residuosAR2)
+
+	Jarque-Bera test for normality
+
+data:  residuosAR2
+JB = 6.6875, p-value = 0.031
+
+> skewness(residuosAR2)
+[1] -0.6093606
+> kurtosis(residuosAR2)
+[1] 1.305191
